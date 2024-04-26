@@ -1,9 +1,6 @@
 ﻿using OdeToFood.Data.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OdeToFood.Data.Services
 {
@@ -35,6 +32,16 @@ namespace OdeToFood.Data.Services
         public IEnumerable<Restaurant> GetAll()
         {
             return restaurants.OrderBy(r => r.Name).ToList();
+        }
+
+        public void Update(Restaurant restaurant)
+        {
+            var existing = Get(restaurant.Id);
+            if (existing != null)
+            {
+                existing.Name = restaurant.Name;
+                existing.Couisine = restaurant.Couisine;
+            }
         }
     }
 }
