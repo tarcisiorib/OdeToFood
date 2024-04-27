@@ -23,6 +23,16 @@ namespace OdeToFood.Data.Services
             _dbContext.SaveChanges();
         }
 
+        public void Delete(int id)
+        {
+            var restaurant = _dbContext.Restaurants.Find(id);
+            if (restaurant != null)
+            {
+                _dbContext.Restaurants.Remove(restaurant);
+                _dbContext.SaveChanges();
+            }
+        }
+
         public Restaurant Get(int id)
         {
             return _dbContext.Restaurants.FirstOrDefault(r => r.Id == id);
